@@ -264,9 +264,9 @@ const SelectedPolygonContent = ({ openInboxPreview, selectedPolygon, stage, }: a
       {stage === "loading" ? (
         <motion.div
           key={selectedPolygon?.id + stage}   // 👈 IMPORTANT
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, ease: "easeOut" }}
+          initial={{  y: 20 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >        <Image src={loaderGif} alt={`Loading ${selectedPolygon.label} data`} className="mix-blend-screen absolute inset-0 top-[4.2%] lg:top-0 lg:relative lg:left-0 pointer-events-none object-cover size-[14rem] md:size-[18rem] mx-auto lg:size-[16vw] lg:mb-[-3%]" />
         </motion.div>) : (
         <div
@@ -340,7 +340,7 @@ const SelectedPolygonContent = ({ openInboxPreview, selectedPolygon, stage, }: a
 );
 
 const BottomSection = ({ setOpenInboxPreview, selectedPolygon, stage, handlePolygonClick, handlePreviewOpen, openInboxPreview, pageOverlay }: any) => (
-  <div className={`absolute w-[90%] overflow-hidden bottom-0 left-0 right-0 z-20 mx-auto`}>
+  <div className={`absolute w-[90%]  bottom-0 left-0 right-0 z-20 mx-auto`}>
     {/* Header */}
     <motion.div variants={pageOverlay} initial="hidden" animate="visible" >
       <Header handlePreview={handlePreviewOpen} selectedPolygon={selectedPolygon?.label} handlePolygonClick={handlePolygonClick} />

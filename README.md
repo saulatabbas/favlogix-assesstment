@@ -1,23 +1,70 @@
 🚀 Front-End Assessment – FavLogix
 
-This project is a submission for the FavLogix Front-End Screening Assignment.
-It is built using Next.js, TypeScript, and Tailwind CSS, following the Figma design and task requirements provided in the assessment instructions. 
+This repository contains the submission for the FavLogix Front-End Screening Assignment.
+The project is implemented using Next.js (App Router), TypeScript, and Tailwind CSS, strictly following the Figma design, comments, and behavioral requirements provided as part of the assessment.
 
-Favlogix-FE-Assessment[1]
+The goal of this project is to demonstrate:
 
-📌 Features
+Pixel-perfect UI implementation
 
-✔️ Pixel-perfect UI based on Figma
+Clean component architecture
 
-✔️ Fully responsive (desktop + mobile)
+Responsive design
 
-✔️ API integration with live dummy APIs
+API integration with proper loading states
 
-✔️ Clean and reusable component structure
+Maintainable and scalable front-end code
 
-✔️ TypeScript with strongly typed props
+🔗 Live Preview
 
-✔️ Loading & error states for all API calls
+🌐 Deployed Application:
+https://favlogix-assesstment.vercel.app/
+
+📌 Key Features
+
+✅ Pixel-perfect UI implementation based on Figma
+
+✅ Fully responsive layout (Desktop & Mobile)
+
+✅ Animated honeycomb dashboard interactions
+
+✅ Gradient highlights & subtle hover animations
+
+✅ Skeleton loaders and progressive data loading
+
+✅ Live API integration using public dummy APIs
+
+✅ Clean, modular, and reusable component structure
+
+✅ Strongly typed TypeScript props and interfaces
+
+✅ Graceful loading and error handling for all API calls
+
+🎨 UI & Interaction Highlights
+
+Animated Honeycomb Dashboard
+
+Subtle gradient outline animation on hover
+
+Active selection state with glow highlight
+
+Smooth transition from icon selection to content area
+
+Loading Experience
+
+Skeleton UI displayed during data fetching
+
+Clear user feedback while extracting information
+
+Gradual content population after data is ready
+
+Visual Effects
+
+Animated blue gradient background
+
+Glow effects aligned with Figma comments
+
+Clean and modern UI styling
 
 🛠 Tech Stack
 
@@ -29,82 +76,108 @@ Tailwind CSS
 
 React Hooks
 
-Fetch API (Async/Await)
+Async/Await Fetch Pattern
+
+CSS & Motion-based Animations
 
 📁 Project Structure
 src/
-  api/
-  app/
-       globals.css
-      page.tsx
-      layout.tsx
-  assets/
-  components/
-  data/
-  global/
-  icons/
-  lib/
+ ├── api/              # API request handlers
+ ├── app/              # App Router pages & layout
+ │    ├── globals.css
+ │    ├── layout.tsx
+ │    └── page.tsx
+ ├── assets/           # Static assets
+ ├── components/       # Reusable UI components
+ │    ├── banner/
+ │    ├── common/
+ │    ├── icons/
+ │    ├── sidebar/
+ │    └── SingleChatPage/
+ ├── data/             # Mock & static data
+ ├── global/           # Global state/helpers
+ ├── icons/            # SVG/Icon components
+ └── lib/              # Utility functions
 public/
 
+
+The structure is designed to be scalable, readable, and easy to maintain.
+
 🔧 Getting Started
-1. Install dependencies
+1️⃣ Install Dependencies
 npm install
 # or
 yarn install
 
-2. Run the development server
+2️⃣ Run the Development Server
 npm run dev
 
 
-Open your browser at: http://localhost:3000
+Open your browser at:
+👉 http://localhost:3000
 
 🔗 APIs Used
 
-This project uses public dummy APIs as required in the assessment:
+As required by the assessment, this project integrates live public dummy APIs:
 
 https://dummyjson.com
 
-
-These APIs are used for displaying:
-
-Lists
-
-Details
+API Usage Includes:
 
 User data
 
-Buttons interactions
+Lists & details
 
 Dynamic UI states
 
+Button & interaction handling
+
+All API calls include:
+
+Loading states
+
+Error handling
+
+Clean data mapping
+
 📝 Assumptions
 
-Figma comments define all required behaviors, interactions, and data placement.
+All required behaviors and interactions are defined through Figma comments
 
-Placeholder images are used where no assets were provided.
+Placeholder assets are used where no assets were provided
 
-API endpoints were chosen based on matching the required data type (users, posts, products, etc.).
+API endpoints were selected based on data relevance (users, posts, etc.)
 
-📄 Requirements Completed
+Animation intensity and timing were kept subtle and professional, as implied by the design
 
-UI matches Figma layout and spacing
+✅ Requirements Completed
 
-Fully responsive screens
+✔ UI matches Figma layout, spacing, and styling
 
-All tasks from Figma comments implemented
+✔ Fully responsive across screen sizes
 
-API fetching, loading, and error handling
+✔ All Figma-comment tasks implemented
 
-Clean and modular component architecture
+✔ Live API integration with loading states
 
-TypeScript types/interfaces added
+✔ Skeleton UI for data fetching
 
+✔ Clean, modular component architecture
 
-📦 Deployment
+✔ Strong TypeScript typing throughout the project
 
-https://favlogix-assesstment.vercel.app/
+📸 Screenshots
+Main Dashboard View
+
+Content & Interaction View
 
 👨‍💻 Author
 
 Saulat Abbas
-Full Stack Developer (Next.js, TypeScript, Tailwind)
+Full Stack Developer
+Specialized in Next.js, TypeScript, Tailwind CSS
+
+📌 Final Notes
+
+This submission focuses on clarity, polish, and alignment with real-world product UI standards.
+All interactions and behaviors were implemented to closely reflect the intent and comments provided in the Figma design.
