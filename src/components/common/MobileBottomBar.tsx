@@ -22,7 +22,7 @@ export default function BottomNav({
       )}
     >
       {polygonData.slice(0, 5).map((item) => {
-        const isActive = selectedPolygon === item.id;
+        const isActive = selectedPolygon === item.label;
 
            const renderSelectedIcon = (item: PolygonItem) => {
                   if (!item.icon) return null;

@@ -15,7 +15,6 @@ export const useFetchWithLoader = <T>({
   staleTime?: number;
   cacheTime?: number;
 }): UseQueryResult<T, unknown> => {
-  // const { setFetchingPolygon } = usePolygonStore();
 
   const query = useQuery<T>({
     queryKey,

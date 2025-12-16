@@ -32,15 +32,19 @@ React Hooks
 Fetch API (Async/Await)
 
 📁 Project Structure
-app/
-  components/
+src/
   api/
-  styles/
-  page.tsx
-  layout.tsx
+  app/
+       globals.css
+      page.tsx
+      layout.tsx
+  assets/
+  components/
+  data/
+  global/
+  icons/
+  lib/
 public/
-types/
-utils/
 
 🔧 Getting Started
 1. Install dependencies
@@ -58,11 +62,8 @@ Open your browser at: http://localhost:3000
 
 This project uses public dummy APIs as required in the assessment:
 
-https://jsonplaceholder.typicode.com
-
 https://dummyjson.com
 
-https://reqres.in
 
 These APIs are used for displaying:
 
@@ -98,15 +99,12 @@ Clean and modular component architecture
 
 TypeScript types/interfaces added
 
-Provided README as required
 
 📦 Deployment
 
-(Optional — add link if deployed)
-Example:
-https://your-vercel-link.vercel.app
+https://favlogix-assesstment.vercel.app/
 
 👨‍💻 Author
 
-Your Name
-Front-End Developer (Next.js, TypeScript, Tailwind)
+Saulat Abbas
+Full Stack Developer (Next.js, TypeScript, Tailwind)

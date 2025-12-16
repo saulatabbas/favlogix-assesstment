@@ -4,9 +4,7 @@ import { getChatMessages } from "@/api/chatDetails";
 import { Message } from "@/data/ChatData";
 import { usePolygonStore } from "@/global/usePolygonStore";
 import { TickIcon } from "@/icons/icons";
-import { ChatMessageAPI } from "@/lib/chat-inner";
 import { useFetchWithLoader } from "@/lib/usefetchWithLoader";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
 

@@ -3,7 +3,7 @@ import { cloneElement, isValidElement } from "react";
 import clsx from "clsx";
 
 interface HeaderLinksProps {
-  selectedPolygon?: string; // should be polygon id
+  selectedPolygon?: string; // polygon label
   handlePolygonClick: (item: PolygonItem) => void;
 }
 
@@ -19,10 +19,14 @@ const HeaderLinks = ({ selectedPolygon, handlePolygonClick }: HeaderLinksProps) 
           if (isValidElement(item.icon)) {
             return cloneElement(item.icon, {
               className: clsx(
+                // color
                 isActive ? "text-black" : "text-gray-500",
+                "group-hover:text-black",
+
+                // size
                 item.id === "inbox"
-                  ? "size-4 2xl:size-4 lg:size-[0.3vw]"
-                  : "size-6 2xl:size-6 lg:size-[0.5vw]"
+                  ? "size-4 2xl:size-4 lg:size-[1.2vw]"
+                  : "size-6 2xl:size-6 lg:size-[1.2vw]"
               ),
             });
           }
@@ -35,7 +39,8 @@ const HeaderLinks = ({ selectedPolygon, handlePolygonClick }: HeaderLinksProps) 
             key={item.id}
             onClick={() => handlePolygonClick(item)}
             className={clsx(
-              "flex items-center gap-x-[10%] px-[2%] py-[0.5%] lg:rounded-[0.45vw] transition-all hover:bg-[#EFF2F2]",
+              "group flex items-center gap-x-[10%] px-[2%] py-[0.5%] lg:rounded-[0.45vw] transition-all",
+              "hover:bg-[#EFF2F2]",
               isActive
                 ? item.id === "inbox"
                   ? "px-[3%] py-[1.5%] bg-[#EFF2F2]"

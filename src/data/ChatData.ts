@@ -1,4 +1,3 @@
-// src/components/data/ChatData.ts
 
 // Message Interface
 export interface Message {
