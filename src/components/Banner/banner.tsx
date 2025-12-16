@@ -77,10 +77,10 @@ const Banner = () => {
     hidden: { opacity: 0, scale: 0.96, y: 40, },
     visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
   };
-const bottomSectionKey =
-  selectedPolygon?.id === "inbox"
-    ? `${selectedPolygon.id}-${stage}` // 🔁 inbox: always re-animate
-    : selectedPolygon?.id;              // ✅ others: animate once
+  const bottomSectionKey =
+    selectedPolygon?.id === "inbox"
+      ? `${selectedPolygon.id}-${stage}` // 🔁 inbox: always re-animate
+      : selectedPolygon?.id;              // ✅ others: animate once
 
   return (
     <section
@@ -111,7 +111,7 @@ const bottomSectionKey =
 
       {/* Glass Container */}
       <div className="fixed inset-0 flex justify-center items-center pointer-events-none">
-        <div className={`w-[96%] lg:w-[98%] h-[95svh]  rounded-2xl border-2 border-white/10 ${stage === "loading"?"bg-black ":"bg-white/4"} md:bg-white/4 px-6 pt-6 pb-20 backdrop-blur-[30px] sm:rounded-3xl`} />
+        <div className={`w-[96%] lg:w-[98%] h-[95svh]  rounded-2xl border-2 border-white/10 ${stage === "loading" ? "bg-black " : "bg-white/4"} md:bg-white/4 px-6 pt-6 pb-20 backdrop-blur-[30px] sm:rounded-3xl`} />
       </div>
 
       {/* Polygons & Center Content */}
@@ -222,25 +222,25 @@ const bottomSectionKey =
 
 
       {/* Footer / Bottom */}
-<AnimatePresence mode="wait">
-  {stage !== "idle" && (
-    <motion.div
-          key={bottomSectionKey}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-    >
-      <BottomSection
-        selectedPolygon={selectedPolygon}
-        stage={stage} bottomSectionKey={bottomSectionKey}
-        handlePolygonClick={handlePolygonClick}
-        setOpenInboxPreview={setOpenInboxPreview}
-        handlePreviewOpen={handlePreviewOpen}
-        openInboxPreview={openInboxPreview}
-        pageOverlay={pageOverlay}
-      />
-    </motion.div>
-  )}
-</AnimatePresence>
+      <AnimatePresence mode="wait">
+        {stage !== "idle" && (
+          <motion.div
+            key={bottomSectionKey}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+          >
+            <BottomSection
+              selectedPolygon={selectedPolygon}
+              stage={stage} bottomSectionKey={bottomSectionKey}
+              handlePolygonClick={handlePolygonClick}
+              setOpenInboxPreview={setOpenInboxPreview}
+              handlePreviewOpen={handlePreviewOpen}
+              openInboxPreview={openInboxPreview}
+              pageOverlay={pageOverlay}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
@@ -262,13 +262,13 @@ const SelectedPolygonContent = ({ openInboxPreview, selectedPolygon, stage, }: a
   <>
     <div className={`lg:relative   mt-[3%]`}>
       {stage === "loading" ? (
-<motion.div
-  key={selectedPolygon?.id + stage}   // 👈 IMPORTANT
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 2, ease: "easeOut" }}
->        <Image src={loaderGif}  alt={`Loading ${selectedPolygon.label} data`} className="mix-blend-screen absolute inset-0 top-[4.2%] lg:top-0 lg:relative lg:left-0 pointer-events-none object-cover size-[14rem] md:size-[18rem] mx-auto lg:size-[16vw] lg:mb-[-3%]" />
- </motion.div>     ) : (
+        <motion.div
+          key={selectedPolygon?.id + stage}   // 👈 IMPORTANT
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >        <Image src={loaderGif} alt={`Loading ${selectedPolygon.label} data`} className="mix-blend-screen absolute inset-0 top-[4.2%] lg:top-0 lg:relative lg:left-0 pointer-events-none object-cover size-[14rem] md:size-[18rem] mx-auto lg:size-[16vw] lg:mb-[-3%]" />
+        </motion.div>) : (
         <div
           className="
     absolute lg:relative inset-0
@@ -318,7 +318,7 @@ const SelectedPolygonContent = ({ openInboxPreview, selectedPolygon, stage, }: a
               : ""}
       </motion.p>
     </div>
-<div className="hidden min-[400px]:block absolute left-[5%] md:top-[30%] text-center w-[90%] lg:hidden">
+    <div className="hidden min-[400px]:block absolute left-[5%] md:top-[30%] text-center w-[90%] lg:hidden">
       <motion.h1 className="text-white   relative z-10 my-[1%]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
         {stage === "idle" ? "Select a module to load data" : stage === "loading" ? `Extracting ${selectedPolygon.label}...` : stage === "loaded" ? (selectedPolygon.label === "Inbox" ? "Inbox data successfully extracted" : `${selectedPolygon.label} data is being prepared`) : ""}
       </motion.h1>
@@ -339,7 +339,7 @@ const SelectedPolygonContent = ({ openInboxPreview, selectedPolygon, stage, }: a
 
 );
 
-const BottomSection = ({setOpenInboxPreview, selectedPolygon, stage, handlePolygonClick, handlePreviewOpen, openInboxPreview, pageOverlay }: any) => (
+const BottomSection = ({ setOpenInboxPreview, selectedPolygon, stage, handlePolygonClick, handlePreviewOpen, openInboxPreview, pageOverlay }: any) => (
   <div className={`absolute w-[90%] overflow-hidden bottom-0 left-0 right-0 z-20 mx-auto`}>
     {/* Header */}
     <motion.div variants={pageOverlay} initial="hidden" animate="visible" >
@@ -356,16 +356,16 @@ const BottomSection = ({setOpenInboxPreview, selectedPolygon, stage, handlePolyg
       </motion.div>
     ) : stage === "loading" ? (
       <motion.div variants={pageOverlay} initial="hidden" animate="visible">
-       <ContentSkeleton />
-     </motion.div>   ) : selectedPolygon ? (
-       <motion.div variants={pageOverlay} initial="hidden" animate="visible" className="h-[40vh] bg-white rounded-xl flex items-center flex-col justify-center border-2 border-white/10 mt-2 text-center  lg:mt-[1%]"> 
-        {renderSelectedIcon(selectedPolygon)}
-        <h1 className="text-[#007AEC]">{selectedPolygon.label}</h1>
-        <p className="text-[1rem] lg:text-[1vw] 2xl:text-[1.125rem] text-gray-600 mt-[0.5%] opacity-80">
-          Click on <span className="text-[#007aec]">Inbox</span> to see the full dashboard demo.
-        </p>
-      </motion.div>
-    ) : null}
+        <ContentSkeleton />
+      </motion.div>) : selectedPolygon ? (
+        <motion.div variants={pageOverlay} initial="hidden" animate="visible" className="h-[40vh] bg-white rounded-xl flex items-center flex-col justify-center border-2 border-white/10 mt-2 text-center  lg:mt-[1%]">
+          {renderSelectedIcon(selectedPolygon)}
+          <h1 className="text-[#007AEC]">{selectedPolygon.label}</h1>
+          <p className="text-[1rem] lg:text-[1vw] 2xl:text-[1.125rem] text-gray-600 mt-[0.5%] opacity-80">
+            Click on <span className="text-[#007aec]">Inbox</span> to see the full dashboard demo.
+          </p>
+        </motion.div>
+      ) : null}
 
     {/* Bottom Nav */}
     <BottomNav selectedPolygon={selectedPolygon?.label} handlePolygonClick={handlePolygonClick} />
