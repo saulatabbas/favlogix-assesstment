@@ -17,7 +17,7 @@ export const polygonData: PolygonItem[] = [
     label: "AI",
     icon: <AIIcon className="size-6 lg:size-6" />,
     position: "top-[10%] left-0 lg:top-[10%] lg:left-[25%]",
-    size: "size-[6rem] md:size-[7rem] lg:size-[6vw] 2xl:size-20",
+    size: "size-[6rem] md:size-[5rem] lg:size-[5vw] 2xl:size-20",
     href: "#",
   },
   {
@@ -57,7 +57,7 @@ export const polygonData: PolygonItem[] = [
     label: "Campaigns",
     icon: <UserGroupFilledIcon className="size-4 text-white" />,
     position: "top-[30%] right-[5%] lg:top-[30%] lg:right-[10%]",
-    size: "size-[6rem] md:size-[7rem] lg:size-[4vw] 2xl:size-20",
+    size: "size-[6rem] md:size-[7rem] lg:size-[5vw] 2xl:size-20",
     href: "#",
   },
 ];

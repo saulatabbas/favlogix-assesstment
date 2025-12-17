@@ -6,7 +6,7 @@ import { cloneElement, isValidElement, useState } from "react";
 
 import { Polygon } from "./Polygon";
 import { Spotlight } from "./Spotlight";
-import loaderGif from "@/assets/Bannerloader.gif";
+import loaderGif from "@/assets/Loader-gif.gif";
 import { polygonData, PolygonItem } from "../icons/hexagonicons";
 import { usePolygonStore } from "@/global/usePolygonStore";
 
@@ -40,11 +40,9 @@ const renderSelectedIcon = (selectedPolygon: PolygonItem) => {
 
 // ------------------- Banner Component -------------------
 const Banner = () => {
-  const { stage, setStage } = usePolygonStore();
-  const [selectedPolygon, setSelectedPolygon] = useState<PolygonItem | null>(null);
-  const [openInboxPreview, setOpenInboxPreview] = useState(false);
+  const { stage, setStage,selectedPolygon, setSelectedPolygon } = usePolygonStore();
+    const [openInboxPreview, setOpenInboxPreview] = useState(false);
   const [loadedPolygons, setLoadedPolygons] = useState<Record<string, boolean>>({});
-
   // Render polygon icon with custom class
 
   // Polygon click handler
@@ -111,7 +109,7 @@ const Banner = () => {
 
       {/* Glass Container */}
       <div className="fixed inset-0 flex justify-center items-center pointer-events-none">
-        <div className={`w-[96%] lg:w-[98%] h-[95svh]  rounded-2xl border-2 border-white/10 ${stage === "loading" ? "bg-black " : "bg-white/4"} md:bg-white/4 px-6 pt-6 pb-20 backdrop-blur-[30px] sm:rounded-3xl`} />
+        <div className={`w-[96%] lg:w-[98%] lg:h-[95svh]  rounded-2xl border-2 border-white/10 ${stage === "loading" ? "bg-black " : "bg-white/4"} md:bg-white/4 px-6 pt-6 pb-20 backdrop-blur-[30px] sm:rounded-3xl`} />
       </div>
 
       {/* Polygons & Center Content */}
@@ -122,7 +120,7 @@ const Banner = () => {
             <Polygon
               key={index}
               className={clsx(
-                "lg:absolute cursor-pointer z-10 transition-all duration-500 ease-in-out",
+                "lg:absolute cursor-pointer z-10 transition-all duration-1000 ease-in-out",
                 item.position,
                 item.size,
                 selectedPolygon?.id === item?.id ? "opacity-0 scale-0 pointer-events-none" : "opacity-100 scale-100"
@@ -136,7 +134,7 @@ const Banner = () => {
 
 
         {/* Center Content */}
-        <motion.div key={stage + (selectedPolygon?.id ?? "")} initial="hidden" animate="visible" variants={fadeUp} className="mix-blend-screen  lg:transform  text-center w-full">
+        <motion.div key={stage + (selectedPolygon?.id ?? "")} initial="hidden" animate="visible" variants={stage==="loading"?fadeUp:null} className="mix-blend-screen  lg:transform  text-center w-full">
           {selectedPolygon ? (
             <SelectedPolygonContent
               selectedPolygon={selectedPolygon} stage={stage} />
@@ -260,64 +258,102 @@ const IdleCircle = () => (
 // Selected Polygon Content
 const SelectedPolygonContent = ({ openInboxPreview, selectedPolygon, stage, }: any) => (
   <>
-    <div className={`lg:relative   mt-[3%]`}>
-      {stage === "loading" ? (
-        <motion.div
-          key={selectedPolygon?.id + stage}   // 👈 IMPORTANT
-          initial={{  y: 20 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >        <Image src={loaderGif} alt={`Loading ${selectedPolygon.label} data`} className="mix-blend-screen absolute inset-0 top-[4.2%] lg:top-0 lg:relative lg:left-0 pointer-events-none object-cover size-[14rem] md:size-[18rem] mx-auto lg:size-[16vw] lg:mb-[-3%]" />
-        </motion.div>) : (
-        <div
-          className="
-    absolute lg:relative inset-0
-    size-40 md:size-56 lg:size-[12vw]
-    mx-auto top-[8%]  md:top-[6%] 
-    rounded-full
-    flex items-center justify-center
-  "
-        >
-          <div className="absolute inset-0 rounded-full p-1 slow-spin bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,_hsla(210,100%,70%,0.18)_0%,_hsla(210,100%,49%,0.08)_50%,_hsla(210,100%,45%,0)_80%)] border-4 border-[#007AEC]" />
-          <div className="w-full h-full bg-[#05070C] rounded-full flex items-center justify-center" />
-        </div>
+ <div className="lg:relative mt-[3%]">
 
-      )}
+  {/* 🔹 IMAGE / LOADER / RING CONTAINER */}
+  <motion.div
+  layout
+  initial={false}
+  transition={{
+    layout: {
+      duration: 0.6,
+      ease: [0.4, 0, 0.2, 1],
+    },
+  }}   className="
+    absolute top-16 left-1/2 -translate-x-1/2
+    flex justify-center
+    lg:relative lg:top-auto lg:left-auto lg:translate-x-0
+  ">
+    {stage === "loading" ? (
+      <motion.img
+        src={loaderGif.src}
+        alt={`Loading ${selectedPolygon.label} data`}
+        className="mix-blend-screen pointer-events-none object-cover
+                   size-[10rem] md:size-[13rem] lg:size-[14vw]"
+      />
+    ) : (
       <div
-        className={`
-    ${openInboxPreview ? " z-20" : " z-80"}  absolute left-[0%] ${stage === "loading" ? "top-[13%] md:top-[14.5%] lg:top-[34.5%]" : "top-[13%] md:top-[13%] lg:top-[24%]"}
-    flex items-center justify-center w-full
-    pointer-events-none
-  `}
+        className="
+          relative
+          size-[10rem] md:size-[13rem] lg:size-[14vw]
+          rounded-full
+          flex items-center justify-center
+        "
       >
-
-        <Polygon
-          active={true}
-          className=" size-20 lg:size-[5vw] 2xl:size-20 flex items-center justify-center"
-        >
-          {selectedPolygon.icon}
-        </Polygon>
+        <div className="absolute inset-0 rounded-full p-1 slow-spin
+          bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,_hsla(210,100%,70%,0.18)_0%,_hsla(210,100%,49%,0.08)_50%,_hsla(210,100%,45%,0)_80%)]
+          border-4 border-[#007AEC]"
+        />
+        <div className="w-full h-full bg-[#05070C] rounded-full" />
       </div>
+    )}
 
-
-
-
-      <motion.h1 className="text-white  hidden lg:block relative z-10 my-[1%]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-        {stage === "idle" ? "Select a module to load data" : stage === "loading" ? `Extracting ${selectedPolygon.label}...` : stage === "loaded" ? (selectedPolygon.label === "Inbox" ? "Inbox data successfully extracted" : `${selectedPolygon.label} data is being prepared`) : ""}
-      </motion.h1>
-
-      <motion.p className="roz-text hidden lg:block  text-white font-light mx-auto text-[1rem] lg:text-[1vw] 2xl:text-[1.125rem]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
-        {stage === "idle"
-          ? "Please select a module to load data."
-          : stage === "loading"
-            ? `Retrieving and processing your ${selectedPolygon.label} data. Please wait...`
-            : stage === "loaded"
-              ? selectedPolygon.label === "Inbox"
-                ? "Inbox data successfully extracted."
-                : `Data for ${selectedPolygon.label} is being prepared. We are working on it.`
-              : ""}
-      </motion.p>
+    {/* 🔹 SELECTED POLYGON (EXACT CENTER OF IMAGE) */}
+    <div
+      className={`
+        absolute inset-0
+        flex items-center justify-center
+        pointer-events-none
+        ${openInboxPreview ? "z-20" : "z-80"}
+      `}
+    >
+      <Polygon
+        active
+        className="size-[4rem] lg:size-[5vw] 2xl:size-20 flex items-center justify-center"
+      >
+        {selectedPolygon.icon}
+      </Polygon>
     </div>
+  </motion.div>
+
+  {/* 🔹 TEXT — NORMAL FLOW (NOT CENTER AFFECTED) */}
+  <motion.h1
+    className="text-white hidden lg:block relative z-10 my-[1%] text-center"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.2 }}
+  >
+    {stage === "idle"
+      ? "Select a module to load data"
+      : stage === "loading"
+        ? `Extracting ${selectedPolygon.label}...`
+        : stage === "loaded"
+          ? selectedPolygon.label === "Inbox"
+            ? "Inbox data successfully extracted"
+            : `${selectedPolygon.label} data is being prepared`
+          : ""}
+  </motion.h1>
+
+  <motion.p
+    className="roz-text hidden lg:block text-white font-light mx-auto
+               text-[1rem] lg:text-[1vw] 2xl:text-[1.125rem] text-center"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.4 }}
+  >
+    {stage === "idle"
+      ? "Please select a module to load data."
+      : stage === "loading"
+        ? `Retrieving and processing your ${selectedPolygon.label} data. Please wait...`
+        : stage === "loaded"
+          ? selectedPolygon.label === "Inbox"
+            ? "Inbox data successfully extracted."
+            : `Data for ${selectedPolygon.label} is being prepared.`
+          : ""}
+  </motion.p>
+
+</div>
+
     <div className="hidden min-[400px]:block absolute left-[5%] md:top-[30%] text-center w-[90%] lg:hidden">
       <motion.h1 className="text-white   relative z-10 my-[1%]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
         {stage === "idle" ? "Select a module to load data" : stage === "loading" ? `Extracting ${selectedPolygon.label}...` : stage === "loaded" ? (selectedPolygon.label === "Inbox" ? "Inbox data successfully extracted" : `${selectedPolygon.label} data is being prepared`) : ""}
